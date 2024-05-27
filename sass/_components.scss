@@ -12,6 +12,12 @@
   justify-content: center;
   align-items: center;
 
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    justify-content: flex-start;
+  }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -23,6 +29,11 @@
     width: 90%;
     transition: all 0.2s;
     margin-right: -3rem;
+
+    @media only screen and (max-width: $bp-smallest) {
+      width: 100%;
+      border-radius: 0;
+    }
 
     &:focus {
       outline: none;
@@ -115,11 +126,22 @@
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
   &__item {
     position: relative;
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0;
+      }
+    }
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
   &__item::before {
@@ -151,6 +173,15 @@
     z-index: 10;
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem 0.5rem;
+    }
   }
   &__item:active::before {
     background-color: var(--color-primary-light);
@@ -161,6 +192,12 @@
     height: 1.75rem;
     fill: currentColor;
     margin-right: 2rem;
+    @media only screen and (max-width: $bp-small) {
+      margin-bottom: 0.7rem;
+      margin-right: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -169,6 +206,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 //Gallery
 .gallery {
@@ -193,6 +234,15 @@
     font-weight: 300;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1.25rem;
+      padding: 1.25rem 1rem;
+    }
   }
   &__stars {
     margin-right: auto;
@@ -204,12 +254,19 @@
     width: 1.75rem;
     height: 1.75rem;
     fill: var(--color-primary);
+    @media only screen and (max-width: $bp-smallest) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   &__location {
     display: flex;
     font-size: 1.2rem;
     align-items: center;
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1rem;
+    }
   }
   &__icon-location {
     margin-right: 0.5rem;
@@ -224,15 +281,29 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1.25rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 .btn-inline {
@@ -302,14 +373,16 @@
     width: 1rem;
     height: 1rem;
     margin-right: 0.7rem;
+    //Old browsers
+    background-image: url(../img/SVG/chevron-thin-right.svg);
+    background-size: cover;
 
-    // background-image: url(../img/SVG/chevron-thin-right.svg);
-    // background-size: cover;
-    //New browser approach
-
-    background-color: var(--color-primary);
-    mask-image: url(../img/SVG/chevron-thin-right.svg);
-    mask-size: cover;
+    @supports (mask-image: url()) {
+      background-color: var(--color-primary);
+      mask-image: url(../img/SVG/chevron-thin-right.svg);
+      mask-size: cover;
+      background-image: none;
+    }
   }
 }
 .recommend {
@@ -322,6 +395,10 @@
     margin-right: auto;
   }
 
+  &__friends {
+    display: flex;
+  }
+
   &__photo {
     box-sizing: content-box;
     height: 4rem;
@@ -330,7 +407,7 @@
     border: 3px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -343,6 +420,10 @@
   margin-bottom: 3.5rem;
   position: relative;
   overflow: hidden;
+  @media only screen and (max-width: $bp-medium) {
+    margin-bottom: 3rem;
+    padding: 2rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -399,11 +480,19 @@
   padding: 3.5rem 0;
   text-align: center;
 
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
+
   &__book-now {
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: 300;
     margin-bottom: 2.5rem;
+
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -423,6 +512,10 @@
   position: relative;
   overflow: hidden;
 
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 1.25rem;
+  }
+
   & > * {
     display: inline-block;
     height: 100%;
@@ -431,6 +524,9 @@
 
   &__visible {
     padding: 2rem 7.5rem;
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 2rem 5rem;
+    }
   }
 
   &__hidden {
